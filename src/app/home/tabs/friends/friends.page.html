@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>friends</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col>
+      <ion-item style="margin-top: -8px; margin-bottom: -8px">
+        <ion-label>Add Friend</ion-label>
+        <ion-input [(ngModel)]="friendName"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col size="auto">
+      <ion-button color="success" (click)="addFriend()">
+        Add Friend
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-list>
+    <ng-container *ngFor="let userFriend of friends">
+      <ion-item>
+        <ion-icon name="person" slot="start"></ion-icon>
+        <ion-label>{{ userFriend.named }} {{ userFriend.nameb }}</ion-label>
+        <ion-button color="danger" slot="end" >
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>

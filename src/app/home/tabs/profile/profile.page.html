@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+    <ion-card class="ion-text-center ion-margin-bottom">
+      <ion-card-header>
+        <div class="image-upload img-wrap cn image-center item-avatar">
+          <label for="file-input">
+              <img *ngIf="img1 == null" id="blah" class="profile-user-img img-fluid rounded-circle" src="https://i.pinimg.com/474x/bb/5e/8e/bb5e8e449fe4d7f0abb3ab7902dbb63d.jpg" alt="User profile picture">
+              <!-- jika image nya sudah berubah -->
+              <img *ngIf="img1" id="blah" class="profile-user-img img-fluid rounded-circle" src="{{ img1 }}" alt="User profile picture1">                             
+              <ion-icon name="create-outline" slot="icon-only" style="text-align: end; padding-left: 130px;"></ion-icon>
+            </label>
+            <!-- <ion-button size="small" (click)="getPicture('camera')">
+              <ion-icon name="camera" slot="start"></ion-icon>
+            </ion-button> -->
+          <!-- <input id="file-input" type="file" name="avatar" style="display: none" (change)="onFileChange($event)"/> -->
+          <input id="file-input" name="avatar" style="display: none" (click)="getPicture('camera')"/>
+        </div>
+        <ion-card-title>{{ userName }}</ion-card-title>
+        <ion-card-subtitle>00000026087</ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+    <ion-card>
+      <ion-card-content>
+        <ion-list>
+          <ion-item *ngIf="userCheckins.length == 0">
+            <ion-label>No check in found.</ion-label>
+          </ion-item>
+          <ion-item *ngFor="let userCheckin of userCheckins.reverse(); let i = index">
+            <ion-label class="ion-text-wrap">
+              {{username}} {{userCheckin[0]}}<br>
+              <small>{{userCheckin[1] | date :'short'}}</small>
+            </ion-label>
+            <ion-button color="danger" slot="end" (click)="removeCheckin(userCheckins.length - i - 1)">
+              <ion-icon name="close"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border ion-padding">
+  <p class="ion-text-center">Kelas mobile mantap!</p>
+  <ion-button expand="block" (click)="logout()">Logout</ion-button>
+</ion-footer>
